@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   منصة إتقان التعليمية - نظام التصميم
+   ألوان مستوحاة من الهوية التعليمية الحديثة (ذهبي، بني، برتقالي)
+   ============================================= */
+
+@layer base {
+  :root {
+    /* الألوان الرئيسية - ذهبي وبني */
+    --background: 40 33% 98%;
+    --foreground: 25 55% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 55% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 55% 15%;
+
+    /* الذهبي الرئيسي */
+    --primary: 43 76% 50%;
+    --primary-foreground: 25 55% 10%;
+
+    /* البني الداكن */
+    --secondary: 25 55% 25%;
+    --secondary-foreground: 40 33% 98%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 25 30% 45%;
+
+    /* البرتقالي (لون اللهب) */
+    --accent: 18 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 72% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 25 55% 10%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 43 76% 50%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 25 55% 18%;
+    --sidebar-foreground: 40 33% 96%;
+    --sidebar-primary: 43 76% 55%;
+    --sidebar-primary-foreground: 25 55% 10%;
+    --sidebar-accent: 25 45% 25%;
+    --sidebar-accent-foreground: 40 33% 96%;
+    --sidebar-border: 25 45% 25%;
+    --sidebar-ring: 43 76% 55%;
+
+    /* الظلال والتأثيرات */
+    --shadow-sm: 0 1px 2px 0 hsl(25 55% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(25 55% 15% / 0.1), 0 2px 4px -2px hsl(25 55% 15% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(25 55% 15% / 0.1), 0 4px 6px -4px hsl(25 55% 15% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(25 55% 15% / 0.1), 0 8px 10px -6px hsl(25 55% 15% / 0.1);
+  }
+
+  .dark {
+    --background: 25 40% 8%;
+    --foreground: 40 30% 96%;
+
+    --card: 25 40% 12%;
+    --card-foreground: 40 30% 96%;
+
+    --popover: 25 40% 12%;
+    --popover-foreground: 40 30% 96%;
+
+    --primary: 43 76% 55%;
+    --primary-foreground: 25 55% 10%;
+
+    --secondary: 40 50% 75%;
+    --secondary-foreground: 25 55% 15%;
+
+    --muted: 25 30% 18%;
+    --muted-foreground: 40 20% 60%;
+
+    --accent: 18 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 40%;
+    --destructive-foreground: 40 30% 96%;
+
+    --border: 25 30% 20%;
+    --input: 25 30% 20%;
+    --ring: 43 76% 55%;
+
+    --sidebar-background: 25 45% 10%;
+    --sidebar-foreground: 40 30% 96%;
+    --sidebar-primary: 43 76% 55%;
+    --sidebar-primary-foreground: 25 55% 10%;
+    --sidebar-accent: 25 35% 18%;
+    --sidebar-accent-foreground: 40 30% 96%;
+    --sidebar-border: 25 35% 18%;
+    --sidebar-ring: 43 76% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    direction: rtl;
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Tajawal', sans-serif;
+  }
+}
+
+@layer components {
+  /* تأثيرات البطاقات */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .card-hover:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* الأزرار المميزة */
+  .btn-primary-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-primary-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-primary-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* شريط التمرير المخصص */
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-muted rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full hover:bg-primary/50 transition-colors;
+  }
+
+  /* تأثير الظهور */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* تأثير النبض */
+  .pulse-badge {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+@layer utilities {
+  /* خلفية متدرجة ذهبية */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, hsl(43 76% 55%) 0%, hsl(43 76% 45%) 100%);
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, hsl(25 55% 30%) 0%, hsl(25 55% 20%) 100%);
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(180deg, hsl(40 33% 98%) 0%, hsl(40 25% 94%) 100%);
+  }
+
+  /* تأثير ذهبي لامع */
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, hsl(43 76% 60%) 0%, hsl(38 70% 50%) 50%, hsl(43 76% 55%) 100%);
+  }
+
+  /* نص متدرج */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(43 76% 50%) 0%, hsl(25 55% 30%) 100%);
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(43 76% 55%) 0%, hsl(38 70% 45%) 100%);
+  }
+
+  /* الظلال */
+  .shadow-primary {
+    box-shadow: 0 10px 40px -10px hsl(43 76% 50% / 0.4);
+  }
+
+  .shadow-card {
+    box-shadow: 0 4px 20px -4px hsl(25 55% 15% / 0.1);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 8px 30px -8px hsl(43 76% 50% / 0.35);
+  }
+}
